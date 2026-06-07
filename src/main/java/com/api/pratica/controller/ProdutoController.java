@@ -5,6 +5,7 @@ import com.api.pratica.models.Produto;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/produtos")
@@ -33,5 +34,10 @@ public class ProdutoController {
     @DeleteMapping("/{id}")
     public void delete(@PathVariable Long id) {
         service.delete(id);
+    }
+
+    @GetMapping("/{id}")
+    public Optional<Produto> findById(@PathVariable Long id) {
+        return service.findById(id);
     }
 }
