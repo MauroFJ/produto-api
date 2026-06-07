@@ -61,4 +61,11 @@ public class ProdutoService {
     public List<Produto> findByName(String name) {
         return repository.findByNome(name);
     }
+
+    public List<Produto> status(String status) {
+        if(status != null) {
+            return repository.findByStatus(status);
+        }
+        return repository.findAll();
+    }
 }

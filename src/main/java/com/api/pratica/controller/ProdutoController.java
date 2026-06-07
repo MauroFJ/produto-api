@@ -45,4 +45,10 @@ public class ProdutoController {
     public Optional<Produto> findById(@PathVariable Long id) {
         return service.findById(id);
     }
+
+    @GetMapping("/status")
+    public List<Produto> status(
+        @RequestParam(required = false) String status) {
+            return service.status(status);
+    }
 }

@@ -10,4 +10,7 @@ public interface ProdutoRepository extends JpaRepository<Produto, Long>{
     List<Produto> findByNomeStartingWith(String nome);
     List<Produto> findByNomeEndingWith(String nome);
     List<Produto> findByNomeContaining(String nome);
+
+    List<Produto> findByStatus(String status);
+    List<Produto> findByStatusIsNull();
 }
