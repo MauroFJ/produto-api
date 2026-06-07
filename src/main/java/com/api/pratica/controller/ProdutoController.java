@@ -22,11 +22,13 @@ public class ProdutoController {
     }
 
     @GetMapping
-    public List<Produto> list(@RequestParam(required = false) String nome) {
-        if(nome != null) {
-            return service.findByName(nome);
-        }
-        return service.list();
+    public List<Produto> list(
+            @RequestParam(required = false) String nome,
+            @RequestParam(required = false) String startingWith,
+            @RequestParam(required = false) String endingWith,
+            @RequestParam(required = false) String containing) {
+
+        return service.search(nome, startingWith, endingWith, containing);
     }
 
     @PutMapping("/{id}")
