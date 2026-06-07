@@ -22,8 +22,11 @@ public class ProdutoController {
     }
 
     @GetMapping
-    public List<Produto> listAll() {
-        return service.listAll();
+    public List<Produto> list(@RequestParam(required = false) String nome) {
+        if(nome != null) {
+            return service.findByName(nome);
+        }
+        return service.list();
     }
 
     @PutMapping("/{id}")

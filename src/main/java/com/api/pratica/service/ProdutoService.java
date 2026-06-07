@@ -16,7 +16,7 @@ public class ProdutoService {
         this.repository = repository;
     }
 
-    public List<Produto> listAll() {
+    public List<Produto> list() {
         return repository.findAll();
     }
 
@@ -39,5 +39,9 @@ public class ProdutoService {
 
     public Optional<Produto> findById(Long id) {
         return repository.findById(id);
+    }
+
+    public List<Produto> findByName(String name) {
+        return repository.findByNome(name);
     }
 }
