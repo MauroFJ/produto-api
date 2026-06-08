@@ -2,6 +2,7 @@ package com.api.pratica.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import com.api.pratica.models.Produto;
+import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
 
@@ -12,6 +13,9 @@ public interface ProdutoRepository extends JpaRepository<Produto, Long>{
     List<Produto> findByNomeContaining(String nome);
 
     List<Produto> findByStatus(String status);
+
+    @Query("SELECT SUM(p.valor) FROM Produto p")
+    Double findTotalValor();
 
     List<Produto> findByValor(Double valor);
     List<Produto> findByValorGreaterThan(Double valor);

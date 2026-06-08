@@ -77,4 +77,7 @@ public class ProdutoService {
 
         return repository.findAll();
     }
+
+    public Double findTotalValue() { return repository.findTotalValor();}
+    public Long count() { return repository.count();}
 }

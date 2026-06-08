@@ -10,7 +10,7 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/produtos")
 public class ProdutoController {
-    private ProdutoService service;
+    private final ProdutoService service;
 
     public ProdutoController(ProdutoService service) {
         this.service = service;
@@ -73,4 +73,9 @@ public class ProdutoController {
         return service.quantidade(quantidade, quantidadeMaiorQue, quantidadeMenorQue);
     }
 
+    @GetMapping("/quantidadeDeProdutos")
+    public Long count() { return service.count();}
+
+    @GetMapping("/valorTotal")
+    public Double valorTotal() { return service.findTotalValue();}
 }
