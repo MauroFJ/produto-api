@@ -68,4 +68,12 @@ public class ProdutoService {
         }
         return repository.findAll();
     }
+
+    public List<Produto> preco(Double valor, Double valorMaiorQue, Double valorMenorQue) {
+        if(valor != null) return repository.findByValor(valor);
+        if(valorMaiorQue != null) return repository.findByValorGreaterThan(valorMaiorQue);
+        if(valorMenorQue != null) return repository.findByValorLessThan(valorMenorQue);
+
+        return repository.findAll();
+    }
 }

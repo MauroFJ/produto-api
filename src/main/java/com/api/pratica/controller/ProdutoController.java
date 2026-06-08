@@ -26,8 +26,8 @@ public class ProdutoController {
             @RequestParam(required = false) String nome,
             @RequestParam(required = false) String startingWith,
             @RequestParam(required = false) String endingWith,
-            @RequestParam(required = false) String containing) {
-
+            @RequestParam(required = false) String containing
+    ) {
         return service.search(nome, startingWith, endingWith, containing);
     }
 
@@ -48,7 +48,17 @@ public class ProdutoController {
 
     @GetMapping("/status")
     public List<Produto> status(
-        @RequestParam(required = false) String status) {
-            return service.status(status);
+        @RequestParam(required = false) String status
+    ) {
+        return service.status(status);
+    }
+
+    @GetMapping("/preco")
+    public List<Produto> preco(
+            @RequestParam(required = false) Double valor,
+            @RequestParam(required = false) Double valorMaiorQue,
+            @RequestParam(required = false) Double valorMenorQue
+    ) {
+        return service.preco(valor, valorMaiorQue, valorMenorQue);
     }
 }
