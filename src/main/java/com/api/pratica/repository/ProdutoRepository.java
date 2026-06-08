@@ -12,7 +12,6 @@ public interface ProdutoRepository extends JpaRepository<Produto, Long>{
     List<Produto> findByNomeContaining(String nome);
 
     List<Produto> findByStatus(String status);
-    List<Produto> findByStatusIsNull();
 
     List<Produto> findByValor(Double valor);
     List<Produto> findByValorGreaterThan(Double valor);

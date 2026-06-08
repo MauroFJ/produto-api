@@ -2,7 +2,6 @@ package com.api.pratica.service;
 
 import com.api.pratica.repository.ProdutoRepository;
 import com.api.pratica.models.Produto;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -17,24 +16,12 @@ public class ProdutoService {
     }
 
     public List<Produto> search(String name, String startingWith, String endingWith, String containing, Double valor, String status) {
-        if(name != null && valor != null) {
-            return repository.findByNomeAndValor(name, valor);
-        }
-        if(name != null && status != null) {
-            return repository.findByNomeAndStatus(name,status);
-        }
-        if(name != null) {
-            return repository.findByNome(name);
-        }
-        if(startingWith != null) {
-            return repository.findByNomeStartingWith(startingWith);
-        }
-        if(endingWith != null) {
-            return repository.findByNomeEndingWith(endingWith);
-        }
-        if(containing != null) {
-            return repository.findByNomeContaining(containing);
-        }
+        if(name != null && valor != null) return repository.findByNomeAndValor(name, valor);
+        if(name != null && status != null) return repository.findByNomeAndStatus(name,status);
+        if(startingWith != null) return repository.findByNomeStartingWith(startingWith);
+        if(endingWith != null) return repository.findByNomeEndingWith(endingWith);
+        if(containing != null) return repository.findByNomeContaining(containing);
+        if(name != null) return repository.findByNome(name);
 
         return repository.findAll();
     }
