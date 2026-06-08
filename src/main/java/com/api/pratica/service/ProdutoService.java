@@ -16,7 +16,13 @@ public class ProdutoService {
         this.repository = repository;
     }
 
-    public List<Produto> search(String name, String startingWith, String endingWith, String containing) {
+    public List<Produto> search(String name, String startingWith, String endingWith, String containing, Double valor, String status) {
+        if(name != null && valor != null) {
+            return repository.findByNomeAndValor(name, valor);
+        }
+        if(name != null && status != null) {
+            return repository.findByNomeAndStatus(name,status);
+        }
         if(name != null) {
             return repository.findByNome(name);
         }

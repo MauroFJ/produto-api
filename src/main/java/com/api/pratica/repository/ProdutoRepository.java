@@ -21,4 +21,7 @@ public interface ProdutoRepository extends JpaRepository<Produto, Long>{
     List<Produto> findByQuantidade(Integer quantidade);
     List<Produto> findByQuantidadeGreaterThan(Integer quantidade);
     List<Produto> findByQuantidadeLessThan(Integer quantidade);
+
+    List<Produto> findByNomeAndValor(String nome, Double valor);
+    List<Produto> findByNomeAndStatus(String nome, String status);
 }

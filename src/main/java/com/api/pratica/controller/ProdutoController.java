@@ -26,9 +26,11 @@ public class ProdutoController {
             @RequestParam(required = false) String nome,
             @RequestParam(required = false) String startingWith,
             @RequestParam(required = false) String endingWith,
-            @RequestParam(required = false) String containing
+            @RequestParam(required = false) String containing,
+            @RequestParam(required = false) Double valor,
+            @RequestParam(required = false) String status
     ) {
-        return service.search(nome, startingWith, endingWith, containing);
+        return service.search(nome, startingWith, endingWith, containing, valor,status);
     }
 
     @PutMapping("/{id}")
