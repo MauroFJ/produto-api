@@ -76,4 +76,12 @@ public class ProdutoService {
 
         return repository.findAll();
     }
+
+    public List<Produto> quantidade(Integer quantidade, Integer quantidadeMaiorQue, Integer quantidadeMenorQue) {
+        if(quantidade != null) return repository.findByQuantidade(quantidade);
+        if(quantidadeMaiorQue != null) return repository.findByQuantidadeGreaterThan(quantidadeMaiorQue);
+        if(quantidadeMenorQue != null) return repository.findByQuantidadeLessThan(quantidadeMenorQue);
+
+        return repository.findAll();
+    }
 }

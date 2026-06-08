@@ -61,4 +61,14 @@ public class ProdutoController {
     ) {
         return service.preco(valor, valorMaiorQue, valorMenorQue);
     }
+
+    @GetMapping("/quantidade")
+    public List<Produto> quantidade(
+            @RequestParam(required = false) Integer quantidade,
+            @RequestParam(required = false) Integer quantidadeMaiorQue,
+            @RequestParam(required = false) Integer quantidadeMenorQue
+    ) {
+        return service.quantidade(quantidade, quantidadeMaiorQue, quantidadeMenorQue);
+    }
+
 }
