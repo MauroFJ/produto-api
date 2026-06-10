@@ -1,16 +1,13 @@
 package com.api.pratica.models;
 
-import jakarta.persistence.Id;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
+import com.api.pratica.enums.StatusProduto;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
 import jakarta.validation.constraints.PositiveOrZero;
 
 
-import jakarta.persistence.Column;
 import java.math.BigDecimal;
 
 @Entity
@@ -30,11 +27,12 @@ public class Produto {
     @PositiveOrZero(message = "O valor deve ser zero ou maior")
     private int quantidade;
 
-    private String status;
+    @Enumerated(EnumType.STRING)
+    private StatusProduto status;
 
     public Produto() {}
 
-    public Produto(String nome, int quantidade, BigDecimal valor, String status) {
+    public Produto(String nome, int quantidade, BigDecimal valor, StatusProduto status) {
         this.nome = nome;
         this.quantidade = quantidade;
         this.valor = valor;
@@ -73,11 +71,11 @@ public class Produto {
         this.valor = valor;
     }
 
-    public String getStatus() {
+    public StatusProduto getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(StatusProduto status) {
         this.status = status;
     }
 }

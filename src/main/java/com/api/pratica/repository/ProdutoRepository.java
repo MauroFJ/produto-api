@@ -1,5 +1,6 @@
 package com.api.pratica.repository;
 
+import com.api.pratica.enums.StatusProduto;
 import org.springframework.data.jpa.repository.JpaRepository;
 import com.api.pratica.models.Produto;
 import org.springframework.data.jpa.repository.Query;
@@ -13,7 +14,7 @@ public interface ProdutoRepository extends JpaRepository<Produto, Long>{
     List<Produto> findByNomeEndingWith(String nome);
     List<Produto> findByNomeContaining(String nome);
 
-    List<Produto> findByStatus(String status);
+    List<Produto> findByStatus(StatusProduto status);
 
     @Query("SELECT SUM(p.valor) FROM Produto p")
     BigDecimal findTotalValor();
@@ -27,5 +28,5 @@ public interface ProdutoRepository extends JpaRepository<Produto, Long>{
     List<Produto> findByQuantidadeLessThan(Integer quantidade);
 
     List<Produto> findByNomeAndValor(String nome, BigDecimal valor);
-    List<Produto> findByNomeAndStatus(String nome, String status);
+    List<Produto> findByNomeAndStatus(String nome, StatusProduto status);
 }

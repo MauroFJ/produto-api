@@ -1,5 +1,6 @@
 package com.api.pratica.service;
 
+import com.api.pratica.enums.StatusProduto;
 import com.api.pratica.repository.ProdutoRepository;
 import com.api.pratica.models.Produto;
 import org.springframework.stereotype.Service;
@@ -16,7 +17,7 @@ public class ProdutoService {
         this.repository = repository;
     }
 
-    public List<Produto> search(String name, String startingWith, String endingWith, String containing, BigDecimal valor, String status) {
+    public List<Produto> search(String name, String startingWith, String endingWith, String containing, BigDecimal valor, StatusProduto status) {
         if(name != null && valor != null) return repository.findByNomeAndValor(name, valor);
         if(name != null && status != null) return repository.findByNomeAndStatus(name,status);
         if(startingWith != null) return repository.findByNomeStartingWith(startingWith);
@@ -56,7 +57,7 @@ public class ProdutoService {
         return repository.findByNome(name);
     }
 
-    public List<Produto> status(String status) {
+    public List<Produto> status(StatusProduto status) {
         if(status != null) {
             return repository.findByStatus(status);
         }

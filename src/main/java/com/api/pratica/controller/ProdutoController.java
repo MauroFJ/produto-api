@@ -1,5 +1,6 @@
 package com.api.pratica.controller;
 
+import com.api.pratica.enums.StatusProduto;
 import com.api.pratica.service.ProdutoService;
 import com.api.pratica.models.Produto;
 import org.springframework.web.bind.annotation.*;
@@ -29,7 +30,7 @@ public class ProdutoController {
             @RequestParam(required = false) String endingWith,
             @RequestParam(required = false) String containing,
             @RequestParam(required = false) BigDecimal valor,
-            @RequestParam(required = false) String status
+            @RequestParam(required = false) StatusProduto status
     ) {
         return service.search(nome, startingWith, endingWith, containing, valor,status);
     }
@@ -51,7 +52,7 @@ public class ProdutoController {
 
     @GetMapping("/status")
     public List<Produto> status(
-        @RequestParam(required = false) String status
+        @RequestParam(required = false) StatusProduto status
     ) {
         return service.status(status);
     }
