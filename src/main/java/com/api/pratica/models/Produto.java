@@ -4,7 +4,11 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
-import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
+import jakarta.validation.constraints.PositiveOrZero;
+
 
 import jakarta.persistence.Column;
 import java.math.BigDecimal;
@@ -15,13 +19,17 @@ public class Produto {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotEmpty(message = "Coloque um nome!")
+    @NotBlank(message = "Coloque um nome!")
     private String nome;
 
+    @NotNull(message = "Informe um valor")
+    @Positive(message = "O valor deve ser maior que zero")
     @Column(precision = 10, scale = 2)
     private BigDecimal valor;
 
+    @PositiveOrZero(message = "O valor deve ser zero ou maior")
     private int quantidade;
+
     private String status;
 
     public Produto() {}
