@@ -4,6 +4,7 @@ import com.api.pratica.service.ProdutoService;
 import com.api.pratica.models.Produto;
 import org.springframework.web.bind.annotation.*;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 
@@ -27,7 +28,7 @@ public class ProdutoController {
             @RequestParam(required = false) String startingWith,
             @RequestParam(required = false) String endingWith,
             @RequestParam(required = false) String containing,
-            @RequestParam(required = false) Double valor,
+            @RequestParam(required = false) BigDecimal valor,
             @RequestParam(required = false) String status
     ) {
         return service.search(nome, startingWith, endingWith, containing, valor,status);
@@ -57,9 +58,9 @@ public class ProdutoController {
 
     @GetMapping("/preco")
     public List<Produto> preco(
-            @RequestParam(required = false) Double valor,
-            @RequestParam(required = false) Double valorMaiorQue,
-            @RequestParam(required = false) Double valorMenorQue
+            @RequestParam(required = false) BigDecimal valor,
+            @RequestParam(required = false) BigDecimal valorMaiorQue,
+            @RequestParam(required = false) BigDecimal valorMenorQue
     ) {
         return service.preco(valor, valorMaiorQue, valorMenorQue);
     }
@@ -77,5 +78,5 @@ public class ProdutoController {
     public Long count() { return service.count();}
 
     @GetMapping("/valorTotal")
-    public Double valorTotal() { return service.findTotalValue();}
+    public BigDecimal valorTotal() { return service.findTotalValue();}
 }

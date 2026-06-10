@@ -20,18 +20,18 @@ public class ProdutoRunner implements CommandLineRunner {
 
         List<Produto> produtos = repository.findAll();
 
-        System.out.println("\n========= LISTA DE PRODUTOS ==================");
-        System.out.printf("%-5s %-30s %5s.2f%n","ID", "NOME","PRECO");
-        System.out.println("------------------------------------------------");
+        System.out.println("\n============== LISTA DE PRODUTOS ===================");
+        System.out.printf("%-5s %-30s %8s%n","ID", "NOME", "PRECO");
+        System.out.println("----------------------------------------------------");
 
         if(produtos.isEmpty()) {
             System.out.println("Nenhum produto cadastrado!");
         } else {
             for (Produto produto : produtos) {
-                System.out.printf("%-5d %-30s %5.2f%n",
+                System.out.printf("%-5d %-30s %10.2f%n",
                         produto.getId(), produto.getNome(),produto.getValor());
             }
         }
-        System.out.println("=================================================\n");
+        System.out.println("====================================================\n");
     }
 }

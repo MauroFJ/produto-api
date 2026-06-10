@@ -4,6 +4,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import com.api.pratica.models.Produto;
 import org.springframework.data.jpa.repository.Query;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 public interface ProdutoRepository extends JpaRepository<Produto, Long>{
@@ -15,16 +16,16 @@ public interface ProdutoRepository extends JpaRepository<Produto, Long>{
     List<Produto> findByStatus(String status);
 
     @Query("SELECT SUM(p.valor) FROM Produto p")
-    Double findTotalValor();
+    BigDecimal findTotalValor();
 
-    List<Produto> findByValor(Double valor);
-    List<Produto> findByValorGreaterThan(Double valor);
-    List<Produto> findByValorLessThan(Double valor);
+    List<Produto> findByValor(BigDecimal valor);
+    List<Produto> findByValorGreaterThan(BigDecimal valor);
+    List<Produto> findByValorLessThan(BigDecimal valor);
 
     List<Produto> findByQuantidade(Integer quantidade);
     List<Produto> findByQuantidadeGreaterThan(Integer quantidade);
     List<Produto> findByQuantidadeLessThan(Integer quantidade);
 
-    List<Produto> findByNomeAndValor(String nome, Double valor);
+    List<Produto> findByNomeAndValor(String nome, BigDecimal valor);
     List<Produto> findByNomeAndStatus(String nome, String status);
 }

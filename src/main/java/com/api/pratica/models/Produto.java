@@ -6,33 +6,38 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.validation.constraints.NotEmpty;
 
+import jakarta.persistence.Column;
+import java.math.BigDecimal;
+
 @Entity
 public class Produto {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
     @NotEmpty(message = "Coloque um nome!")
     private String nome;
 
+    @Column(precision = 10, scale = 2)
+    private BigDecimal valor;
+
     private int quantidade;
-    private double valor;
     private String status;
 
     public Produto() {}
 
-    public Produto(String nome, int quantidade, double valor, String status) {
+    public Produto(String nome, int quantidade, BigDecimal valor, String status) {
         this.nome = nome;
         this.quantidade = quantidade;
         this.valor = valor;
         this.status = status;
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -52,11 +57,11 @@ public class Produto {
         this.quantidade = quantidade;
     }
 
-    public double getValor() {
+    public BigDecimal getValor() {
         return valor;
     }
 
-    public void setValor(double valor) {
+    public void setValor(BigDecimal valor) {
         this.valor = valor;
     }
 

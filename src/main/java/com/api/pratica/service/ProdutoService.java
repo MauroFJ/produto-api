@@ -4,6 +4,7 @@ import com.api.pratica.repository.ProdutoRepository;
 import com.api.pratica.models.Produto;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 
@@ -15,7 +16,7 @@ public class ProdutoService {
         this.repository = repository;
     }
 
-    public List<Produto> search(String name, String startingWith, String endingWith, String containing, Double valor, String status) {
+    public List<Produto> search(String name, String startingWith, String endingWith, String containing, BigDecimal valor, String status) {
         if(name != null && valor != null) return repository.findByNomeAndValor(name, valor);
         if(name != null && status != null) return repository.findByNomeAndStatus(name,status);
         if(startingWith != null) return repository.findByNomeStartingWith(startingWith);
@@ -62,7 +63,7 @@ public class ProdutoService {
         return repository.findAll();
     }
 
-    public List<Produto> preco(Double valor, Double valorMaiorQue, Double valorMenorQue) {
+    public List<Produto> preco(BigDecimal valor, BigDecimal valorMaiorQue, BigDecimal valorMenorQue) {
         if(valor != null) return repository.findByValor(valor);
         if(valorMaiorQue != null) return repository.findByValorGreaterThan(valorMaiorQue);
         if(valorMenorQue != null) return repository.findByValorLessThan(valorMenorQue);
@@ -78,6 +79,6 @@ public class ProdutoService {
         return repository.findAll();
     }
 
-    public Double findTotalValue() { return repository.findTotalValor();}
+    public BigDecimal findTotalValue() { return repository.findTotalValor();}
     public Long count() { return repository.count();}
 }
