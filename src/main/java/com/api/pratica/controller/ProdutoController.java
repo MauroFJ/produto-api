@@ -5,9 +5,13 @@ import com.api.pratica.service.ProdutoService;
 import com.api.pratica.models.Produto;
 import org.springframework.web.bind.annotation.*;
 
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+import jakarta.validation.Valid;
+import java.net.URI;
+
 import java.math.BigDecimal;
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/produtos")
@@ -19,8 +23,14 @@ public class ProdutoController {
     }
 
     @PostMapping
-    public Produto save(@RequestBody Produto produto) {
-        return service.save(produto);
+    public ResponseEntity<Produto> save(@Valid @RequestBody Produto produto) {
+        Produto salvo = service.save(produto);
+        URI location = ServletUriComponentsBuilder
+                .fromCurrentRequest()
+                .path("/{id}")
+                .buildAndExpand(salvo.getId())
+                .toUri();
+        return ResponseEntity.created(location).body(salvo);
     }
 
     @GetMapping
@@ -36,18 +46,21 @@ public class ProdutoController {
     }
 
     @PutMapping("/{id}")
-    public Produto update(@RequestBody Produto produto, @PathVariable Long id) {
+    public Produto update(@Valid @RequestBody Produto produto, @PathVariable Long id) {
         return service.update(produto, id);
     }
 
     @DeleteMapping("/{id}")
-    public void delete(@PathVariable Long id) {
+    public ResponseEntity<Void> delete(@PathVariable Long id) {
         service.delete(id);
+        return ResponseEntity.noContent().build();
     }
 
     @GetMapping("/{id}")
-    public Optional<Produto> findById(@PathVariable Long id) {
-        return service.findById(id);
+    public ResponseEntity<Produto> findById(@PathVariable Long id) {
+        return service.findById(id)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
     }
 
     @GetMapping("/status")
