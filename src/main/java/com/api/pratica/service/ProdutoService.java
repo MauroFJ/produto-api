@@ -1,6 +1,7 @@
 package com.api.pratica.service;
 
 import com.api.pratica.enums.StatusProduto;
+import com.api.pratica.exceptions.ProdutoNotFoundException;
 import com.api.pratica.repository.ProdutoRepository;
 import com.api.pratica.models.Produto;
 import org.springframework.stereotype.Service;
@@ -41,7 +42,7 @@ public class ProdutoService {
             produto.setId(id);
             return repository.save(produto);
         }else {
-            throw new RuntimeException("Produto não encontrado");
+            throw new ProdutoNotFoundException(id);
         }
     }
 
