@@ -3,12 +3,14 @@ package com.api.pratica.repository;
 import com.api.pratica.enums.StatusProduto;
 import org.springframework.data.jpa.repository.JpaRepository;
 import com.api.pratica.models.Produto;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Query;
 
 import java.math.BigDecimal;
 import java.util.List;
 
-public interface ProdutoRepository extends JpaRepository<Produto, Long>{
+public interface ProdutoRepository extends JpaRepository<Produto, Long>, JpaSpecificationExecutor<Produto> {
+
     List<Produto> findByNome(String nome);
     List<Produto> findByNomeStartingWith(String nome);
     List<Produto> findByNomeEndingWith(String nome);

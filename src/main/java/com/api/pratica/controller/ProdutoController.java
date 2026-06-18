@@ -35,14 +35,24 @@ public class ProdutoController {
 
     @GetMapping
     public List<Produto> list(
-            @RequestParam(required = false) String nome,
+            @RequestParam(required = false) String name,
             @RequestParam(required = false) String startingWith,
             @RequestParam(required = false) String endingWith,
             @RequestParam(required = false) String containing,
-            @RequestParam(required = false) BigDecimal valor,
-            @RequestParam(required = false) StatusProduto status
+            @RequestParam(required = false) StatusProduto status,
+            @RequestParam(required = false) BigDecimal value,
+            @RequestParam(required = false) BigDecimal valueGreaterThan,
+            @RequestParam(required = false) BigDecimal valueLessThan,
+            @RequestParam(required = false) Integer quantity,
+            @RequestParam(required = false) Integer quantityGreaterThan,
+            @RequestParam(required = false) Integer quantityLessThan
     ) {
-        return service.search(nome, startingWith, endingWith, containing, valor,status);
+        return service.search(
+                name, startingWith, endingWith, containing,
+                status,
+                value, valueGreaterThan, valueLessThan,
+                quantity, quantityGreaterThan, quantityLessThan
+        );
     }
 
     @PutMapping("/{id}")
