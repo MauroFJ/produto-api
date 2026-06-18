@@ -73,31 +73,6 @@ public class ProdutoController {
                 .orElse(ResponseEntity.notFound().build());
     }
 
-    @GetMapping("/status")
-    public List<Produto> status(
-        @RequestParam(required = false) StatusProduto status
-    ) {
-        return service.status(status);
-    }
-
-    @GetMapping("/preco")
-    public List<Produto> preco(
-            @RequestParam(required = false) BigDecimal valor,
-            @RequestParam(required = false) BigDecimal valorMaiorQue,
-            @RequestParam(required = false) BigDecimal valorMenorQue
-    ) {
-        return service.preco(valor, valorMaiorQue, valorMenorQue);
-    }
-
-    @GetMapping("/quantidade")
-    public List<Produto> quantidade(
-            @RequestParam(required = false) Integer quantidade,
-            @RequestParam(required = false) Integer quantidadeMaiorQue,
-            @RequestParam(required = false) Integer quantidadeMenorQue
-    ) {
-        return service.quantidade(quantidade, quantidadeMaiorQue, quantidadeMenorQue);
-    }
-
     @GetMapping("/quantidadeDeProdutos")
     public Long count() { return service.count();}
 

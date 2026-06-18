@@ -43,10 +43,6 @@ public class ProdutoService {
         return repository.findAll(spec);
     }
 
-    public List<Produto> list() {
-        return repository.findAll();
-    }
-
     public Produto save(Produto produto) {
         return repository.save(produto);
     }
@@ -69,33 +65,6 @@ public class ProdutoService {
 
     public Optional<Produto> findById(Long id) {
         return repository.findById(id);
-    }
-
-    public List<Produto> findByName(String name) {
-        return repository.findByNome(name);
-    }
-
-    public List<Produto> status(StatusProduto status) {
-        if(status != null) {
-            return repository.findByStatus(status);
-        }
-        return repository.findAll();
-    }
-
-    public List<Produto> preco(BigDecimal valor, BigDecimal valorMaiorQue, BigDecimal valorMenorQue) {
-        if(valor != null) return repository.findByValor(valor);
-        if(valorMaiorQue != null) return repository.findByValorGreaterThan(valorMaiorQue);
-        if(valorMenorQue != null) return repository.findByValorLessThan(valorMenorQue);
-
-        return repository.findAll();
-    }
-
-    public List<Produto> quantidade(Integer quantidade, Integer quantidadeMaiorQue, Integer quantidadeMenorQue) {
-        if(quantidade != null) return repository.findByQuantidade(quantidade);
-        if(quantidadeMaiorQue != null) return repository.findByQuantidadeGreaterThan(quantidadeMaiorQue);
-        if(quantidadeMenorQue != null) return repository.findByQuantidadeLessThan(quantidadeMenorQue);
-
-        return repository.findAll();
     }
 
     public BigDecimal findTotalValue() { return repository.findTotalValor();}
