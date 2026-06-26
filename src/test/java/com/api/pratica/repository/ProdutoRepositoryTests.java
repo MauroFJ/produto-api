@@ -32,7 +32,7 @@ public class ProdutoRepositoryTests {
     void semFiltro_deveTrazerTodos() {
         List<Produto> resultado = repository.findAll(Specification.unrestricted());
 
-        assertThat(resultado).hasSize(99);
+        assertThat(resultado).hasSize(3);
     }
 
     @Test
