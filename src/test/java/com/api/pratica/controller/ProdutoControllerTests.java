@@ -20,7 +20,10 @@ import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
+import org.springframework.test.context.ActiveProfiles;
+
 @WebMvcTest(ProdutoController.class)
+@ActiveProfiles("test")
 public class ProdutoControllerTests {
     @Autowired
     private MockMvc mockMvc;
