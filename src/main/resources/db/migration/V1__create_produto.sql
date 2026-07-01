@@ -1,0 +1,7 @@
+CREATE TABLE produto (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    nome VARCHAR(255) NOT NULL,
+    valor NUMERIC(10, 2) NOT NULL,
+    quantidade INTEGER NOT NULL,
+    status VARCHAR(255)
+);
